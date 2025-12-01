@@ -1,0 +1,13 @@
+{
+  "name": "FigmaFlow - Jira Integration",
+  "id": "figmaflow-jira-connector",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": ["https://*.railway.app"],
+    "devAllowedDomains": ["http://localhost"],
+    "reasoning": "Plugin needs to connect to backend API for fetching Jira tickets and AI summaries"
+  }
+}
+
