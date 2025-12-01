@@ -4,7 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:code": "esbuild code.ts --bundle --outfile=dist/code.js --platform=browser --target=es2020",
+    "build:ui": "vite build",
+    "build": "mkdir -p dist && npm run build:code && npm run build:ui && npm run build:manifest",
+    "build:manifest": "node -e \"const fs=require('fs');const m=JSON.parse(fs.readFileSync('manifest.json','utf8'));m.main='code.js';m.ui='index.html';fs.writeFileSync('dist/manifest.json',JSON.stringify(m,null,2));\"",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -16,6 +19,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",
+    "esbuild": "^0.19.0",
     "typescript": "^5.9.3",
     "vite": "^5.0.0"
   }

@@ -18,7 +18,7 @@ npm run build
 3. Load in Figma:
    - Open Figma Desktop app
    - Go to Plugins → Development → Import plugin from manifest...
-   - Select `plugin/dist/manifest.json`
+   - Select `plugin/dist/manifest.json` (the manifest in the dist folder)
 
 ## Development
 
