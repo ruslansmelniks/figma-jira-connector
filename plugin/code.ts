@@ -2,9 +2,11 @@
  * Figma plugin backend - runs in plugin sandbox
  */
 
+// Declare the __html__ variable that Figma injects
+declare const __html__: string;
+
 // Show UI with dimensions 400x600
-// UI is loaded from manifest.json "ui" property
-figma.showUI('', {
+figma.showUI(__html__, {
   width: 400,
   height: 600,
 });

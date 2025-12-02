@@ -51,13 +51,12 @@ export async function saveSummaryCache(
       .from('ticket_summaries')
       .upsert(
         {
-          ticket_id: ticketId,
-          quick_summary: quickSummary,
+          jira_ticket_id: ticketId,
+          summary_text: quickSummary,
           full_summary: fullSummary,
-          updated_at: new Date().toISOString(),
         },
         {
-          onConflict: 'ticket_id',
+          onConflict: 'jira_ticket_id',
         }
       );
 
@@ -84,8 +83,8 @@ export async function getSummaryCache(ticketId: string): Promise<TicketSummary |
   try {
     const { data, error } = await supabaseClient
       .from('ticket_summaries')
-      .select('quick_summary, full_summary')
-      .eq('ticket_id', ticketId)
+      .select('summary_text, full_summary')
+      .eq('jira_ticket_id', ticketId)
       .single();
 
     if (error) {
@@ -101,7 +100,7 @@ export async function getSummaryCache(ticketId: string): Promise<TicketSummary |
     }
 
     return {
-      quick: data.quick_summary,
+      quick: data.summary_text,
       full: data.full_summary,
     };
   } catch (error) {
